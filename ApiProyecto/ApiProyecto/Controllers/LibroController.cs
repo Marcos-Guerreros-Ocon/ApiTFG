@@ -29,10 +29,10 @@ namespace ApiProyecto.Controllers
         }
 
         // GET: api/Libro/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Libro>> GetLibro(int id)
+        [HttpGet("{isbn}")]
+        public async Task<ActionResult<Libro>> GetLibro(string isbn)
         {
-            var libro = await _context.Libro.FindAsync(id);
+            var libro = await _context.Libro.FindAsync(isbn);
 
             if (libro == null)
             {
@@ -44,10 +44,10 @@ namespace ApiProyecto.Controllers
 
         // PUT: api/Libro/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLibro(int id, Libro libro)
+        [HttpPut("{isbn}")]
+        public async Task<IActionResult> PutLibro(string isbn, Libro libro)
         {
-            if (id != libro.Isbn)
+            if (isbn != libro.Isbn)
             {
                 return BadRequest();
             }
@@ -60,7 +60,7 @@ namespace ApiProyecto.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LibroExists(id))
+                if (!LibroExists(isbn))
                 {
                     return NotFound();
                 }
@@ -99,10 +99,10 @@ namespace ApiProyecto.Controllers
         }
 
         // DELETE: api/Libro/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLibro(int id)
+        [HttpDelete("{isbn}")]
+        public async Task<IActionResult> DeleteLibro(string isbn)
         {
-            var libro = await _context.Libro.FindAsync(id);
+            var libro = await _context.Libro.FindAsync(isbn);
             if (libro == null)
             {
                 return NotFound();
@@ -114,9 +114,9 @@ namespace ApiProyecto.Controllers
             return NoContent();
         }
 
-        private bool LibroExists(int id)
+        private bool LibroExists(string isbn)
         {
-            return _context.Libro.Any(e => e.Isbn == id);
+            return _context.Libro.Any(e => e.Isbn == isbn);
         }
     }
 }

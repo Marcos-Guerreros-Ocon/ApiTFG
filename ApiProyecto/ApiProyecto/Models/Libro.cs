@@ -7,7 +7,7 @@ namespace ApiProyecto.Models
 {
     public partial class Libro
     {
-        public int Isbn { get; set; }
+        public string Isbn { get; set; }
         public int IdGenero { get; set; }
         public string Titulo { get; set; }
         public string Autor { get; set; }

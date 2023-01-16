@@ -9,6 +9,6 @@ namespace ApiProyecto.Models
     {
         public int IdVenta { get; set; }
         public int IdUsuario { get; set; }
-        public int Isbn { get; set; }
+        public string Isbn { get; set; }
     }
 }

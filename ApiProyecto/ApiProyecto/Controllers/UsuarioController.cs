@@ -88,12 +88,17 @@ namespace ApiProyecto.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {
+            List<Venta> ventas;
             var usuario = await _context.Usuario.FindAsync(id);
             if (usuario == null)
             {
                 return NotFound();
             }
-
+            ventas = _context.Venta.Where(w => w.IdUsuario == id).ToList();
+            foreach (Venta v in ventas)
+            {
+                _context.Venta.Remove(v);
+            }
             _context.Usuario.Remove(usuario);
             await _context.SaveChangesAsync();
 

@@ -108,6 +108,12 @@ namespace ApiProyecto.Controllers
                 return NotFound();
             }
 
+            var ventas = _context.Venta.Where(w => w.Isbn== isbn).ToList();
+            foreach (Venta v in ventas)
+            {
+                _context.Venta.Remove(v);
+            }
+
             _context.Libro.Remove(libro);
             await _context.SaveChangesAsync();
 

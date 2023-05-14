@@ -99,6 +99,7 @@ namespace ApiProyecto.Controllers
             {
                 _context.Venta.Remove(v);
             }
+            await _context.SaveChangesAsync();
             _context.Usuario.Remove(usuario);
             await _context.SaveChangesAsync();
 

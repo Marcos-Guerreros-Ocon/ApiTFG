@@ -113,7 +113,7 @@ namespace ApiProyecto.Controllers
             {
                 _context.Venta.Remove(v);
             }
-
+            await _context.SaveChangesAsync();
             _context.Libro.Remove(libro);
             await _context.SaveChangesAsync();
 
